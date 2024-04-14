@@ -14,7 +14,9 @@ const PORT = process.env.PORT || 1337;
 //Connecting to Database
 connectDB();
 
-
+//Handle options credientials check - before CORS!
+//and fetch cookies credentials requirement
+// app.use(credentials);
 app.use(cors(corsOptions));
 
 
