@@ -2,20 +2,25 @@ const mongoose = require('mongoose');
 const ErrorLog = require('../model/ErrorLog');
 const EventLog = require('../model/EventLog');
 
-const errorLogger = async (err,req,res,next) =>{
-    const message = `${err.name}: ${err.message}`; //req.headers.orgin is the domain making the req
-    //to store the new event
-    try{
-        const errorHandler = await EventLog.create({
-            timestamp: dateTime,
-            message  
-        });
-    }catch(err){
-        console.error(err);
-    }
+const errorLogger = async (err, req, res, next) => {
+    const message = `${err.name}: ${err.message}`;
 
-    console.error(err.stack);
-    res.status(500).send(err.message);
-}
+    try {
+        //Store the current timestamp
+        const timestamp = new Date();
+
+        // Create the event log entry
+        const errorHandler = await EventLog.create({
+            timestamp,
+            message
+        });
+
+        console.error(err.stack);
+        res.status(500).send(err.message);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+};
 
 module.exports = errorLogger;
