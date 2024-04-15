@@ -6,7 +6,8 @@ const getAllposts = async (req,res) => {
     try {
         const posts = await Post.find().populate('author','username');
         if(!posts) return res.status(204).json({'message':'No posts found'});
-        res.json(posts)
+        console.log(posts);
+        // res.json(posts)
     }catch(err){
         res.status(500).json({message: err.message});
     }
@@ -48,8 +49,9 @@ const updatePost = async (req, res) => {
 
         const author = await User.findOne({ username: req.user.id }).exec();
 
-        console.log(post.author)
+        console.log(post.author._id)
         console.log(author._id);
+        console.log(author.username)
         // Check if the authenticated user is the author of the post
         if (String(post.author._id) !== String(author._id)) {
             return res.status(403).json({ message: 'You are not authorized to update this post' });
@@ -81,7 +83,8 @@ const deletePost = async (req, res) => {
             return res.status(403).json({ message: 'You are not authorized to delete this post' });
         }
 
-       
+        await post.remove();
+
         res.json({ message: 'Post deleted successfully' });
     } catch (error) {
         res.status(400).json({ message: error.message });

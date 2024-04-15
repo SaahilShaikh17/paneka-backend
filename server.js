@@ -43,6 +43,7 @@ app.use('/logout', require('./routes/logout'));
 
 app.use(verifyJWT);
 app.use('/posts',require('./routes/postRoutes'));
+app.use('/comments',require('./routes/commentRoute'));
 
 app.use(errorLogger);
 

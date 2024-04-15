@@ -1,15 +1,13 @@
 //commentRoutes.js
-// const express = require('express');
-// const router = require('express').Router();
-// const commentController = require('../controllers/commentController');
+const express = require('express');
+const router = require('express').Router();
+const commentController = require('../controllers/commentController');
 
-// router.route('/')
-//     .get()
-//     .post()
-//     .put()
-//     .delete()
+router.post('/:postId', commentController.createComment);
+router.put('/:id',commentController.updateComment);
+router.delete('/:id',commentController.deleteComment);
+router.get('/post/:postId',commentController.getCommentsForPost)
 
-//     router.route('/:id')
-//         .get()
 
-// module.exports = router;
+
+module.exports = router;
