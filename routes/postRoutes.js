@@ -1,15 +1,15 @@
 //postRoutes.js
-// const express = require('express');
-// const router = require('express').Router();
-// const PostController = require('../controllers/postController');
+const express = require('express');
+const router = require('express').Router();
+const PostController = require('../controllers/postController');
 
-// router.route('/')
-//     .get()
-//     .post()
-//     .put()
-//     .delete()
+router.route('/')
+    .get(PostController.getAllposts)
+    .post(PostController.createPost)
 
-//     router.route('/:id')
-//         .get()
+router.put('/:id',PostController.updatePost);
+router.delete('/:id',PostController.deletePost);
+    // router.route('/:id')
+    //     .get()
 
-// module.exports = router;
+module.exports = router;

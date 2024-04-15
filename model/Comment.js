@@ -22,10 +22,6 @@ const commentSchema = new Schema({
         ref: "User",
         default: [],
       },
-      replies: [{
-        type: mongoose.Schema.Types.ObjectId,  //When a comment has replies, storing them in array
-        ref: 'Comment'
-      }],
       time: {
         type: Date,
         default: Date.now,

@@ -27,14 +27,6 @@ const userSchema = new Schema({
         maxlength: 1024,
         minlength: 5,
       },
-      posts: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Post'
-      }],
-      comments: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Comment'
-      }],
       refreshToken: String
 })
 

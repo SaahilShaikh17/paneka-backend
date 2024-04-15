@@ -1,7 +1,7 @@
 //commentRoutes.js
 // const express = require('express');
 // const router = require('express').Router();
-// const CommentController = require('../controllers/commentController');
+// const commentController = require('../controllers/commentController');
 
 // router.route('/')
 //     .get()
