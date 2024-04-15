@@ -4,15 +4,12 @@ const EventLog = require('../model/EventLog');
 
 const errorLogger = async (err, req, res, next) => {
     const message = `${err.name}: ${err.message}`;
-
+    console.log(message);
     try {
-        //Store the current timestamp
-        const timestamp = new Date();
-
-        // Create the event log entry
-        const errorHandler = await EventLog.create({
-            timestamp,
-            message
+   
+         // Create the event log entry
+        const errorHandler = await ErrorLog.create({
+            errorMessage:message
         });
 
         console.error(err.stack);

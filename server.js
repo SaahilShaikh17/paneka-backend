@@ -39,7 +39,7 @@ app.use('/register',require('./routes/register'));
 app.use('/users',require('./routes/userRoutes'));
 app.use('/login',require('./routes/auth'));
 
-app.use(verifyJWT);
+// app.use(verifyJWT);
 
 app.use(errorLogger);
 
