@@ -91,9 +91,27 @@ const deletePost = async (req, res) => {
     }
 };
 
+const getPostById = async (req, res) => {
+    const postId = req.params.id; // Get the postId from the URL parameters
+
+    try {
+        // Find the post by ID
+        const post = await Post.findById(postId).populate('author', 'username').exec();
+
+        if (!post) {
+            return res.status(404).json({ message: 'Post not found' });
+        }
+
+        res.status(200).json({ message: 'Post found', post });
+    } catch (error) {
+        res.status(500).json({ message: 'Failed to get post', error: error.message });
+    }
+};
+
 module.exports = {
     getAllposts,
     createPost,
     updatePost,
-    deletePost
+    deletePost,
+    getPostById
 }
