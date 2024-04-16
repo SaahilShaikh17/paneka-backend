@@ -20,7 +20,7 @@ connectDB();
 //Handle options credientials check - before CORS!
 //and fetch cookies credentials requirement
 app.use(credentials);
-app.use(cors(corsOptions));
+app.use(cors({ origin: '*' }));
 
 
 //Built in middleare to handle urlencoded data, a.k.a, form daya
